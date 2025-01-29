@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles\styles.css" />
+    <title>Whitepace</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo logo">
+          <img
+            src="images\logo.svg"
+            alt="Whitepace logo"
+            class="logo__image"
+            width="228"
+            height="48"
+            loading="lazy"
+          />
+        </a>
+        <nav class="header__menu hidden-mobile">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="#" class="header__menu-link">О школе</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#" class="header__menu-link">Тренеры</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#" class="header__menu-link">Стоимость</a>
+            </li>
+          </ul>
+        </nav>
+        <a href="tel:+78000001122" class="header__link hidden-mobile"
+          >+7 800 000 11 22</a
+        >
+        <a href="tel:+78000001122" class="header__link-icon visible-mobile">
+          <img
+            src="images\phone.svg"
+            alt=""
+            class="header__link-image"
+            width="20"
+            height="20"
+            loading="lazy"
+          />
+        </a>
+
+        <button
+          class="header__burger-button burger-button visible-mobile"
+          type="button"
+          onClick="mobileOverlay.showModal()"
+        >
+          <span class="visually-hidden">Open contacts menu</span>
+        </button>
+      </div>
+    </header>
+    <main class="content">
+      <section class="section ">
+        <div class="section__body">
+          <div class="hero">
+            <div class="hero__wrapper">
+              <div class="hero__inner">
+                <h1 class="hero__title">ROBO SCHOOL</h1>
+                <div class="hero__description">
+                  <p>
+                    Курсы повышения квалификации по робототехнике для педагогов
+                    начальной школы
+                  </p>
+                </div>
+                <button class="hero__button" type="button">Записаться на курс</button>
+              </div>
+              <img
+                src="images/femmes.svg"
+                alt="Девушка"
+                class="hero__image"
+                width="783"
+                height="917"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section class="section container container--first-and-second">
+        <div class="section_body">
+          <div class="hero">
+            <div class="hero__inner">
+              <h1 class="hero__title">Поможем навести порядок в компании</h1>
+              <div class="hero__description">
+                <p>
+                  Внедрение CRM за 2 недели.<br />
+                  Работаем по всей России.
+                </p>
+              </div>
+              <form class="hero__form">
+                <div class="hero__field field">
+                  <input
+                    type="text"
+                    class="field__input"
+                    name="name"
+                    placeholder="Название компании"
+                  />
+                </div>
+                <div class="hero__field field">
+                  <input
+                    type="text"
+                    class="field__input"
+                    name="telephone"
+                    placeholder="Телефон*"
+                  />
+                </div>
+              </form>
+              <button class="hero__button button" type="button">
+                ЗАКАЗАТЬ БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ
+              </button>
+              <div class="hero__description-oferta">
+                <p>Мы никогда не передаём Ваши данные третьим лицам</p>
+              </div>
+            </div>
+            <img
+              class="hero__image"
+              src="images\hero-image.svg"
+              alt=""
+              width="496"
+              height="317"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section> -->
+    </main>
+    <dialog class="mobile-overlay visible-mobile" id="mobileOverlay">
+      <form class="mobile-overlay__close-button-wrapper" method="dialog">
+        <button class="mobile-overlay__close-button cross-button" type="submit">
+          <span class="visually-hidden">Close contacts menu</span>
+        </button>
+      </form>
+      <div class="mobile-overlay__body">
+        <ul class="mobile-overlay__list">
+          <li class="mobile-overlay__item">
+            <a href="#" class="mobile-overlay__link">О школе</a>
+          </li>
+          <li class="mobile-overlay__item">
+            <a href="#" class="mobile-overlay__link">Тренеры</a>
+          </li>
+          <li class="mobile-overlay__item">
+            <a href="#" class="mobile-overlay__link">Стоимость</a>
+          </li>
+        </ul>
+      </div>
+    </dialog>
+  </body>
+</html>

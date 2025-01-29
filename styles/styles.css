@@ -1,0 +1,588 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+    Убираем внутренние отступы слева тегам списков,
+    у которых есть атрибут class
+   */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+    Убираем внешние отступы body и двум другим тегам,
+    у которых есть атрибут class
+   */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+    Убираем внешние отступы вертикали нужным тегам,
+    у которых есть атрибут class
+   */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+    Убираем стандартный маркер маркированному списку,
+    у которого есть атрибут class
+   */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+    Обнуляем вертикальные внешние отступы параграфа,
+    объявляем локальную переменную для внешнего отступа вниз,
+    чтобы избежать взаимодействие с более сложным селектором
+   */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+    Внешний отступ вниз для параграфа без атрибута class,
+    который расположен не последним среди своих соседних элементов
+   */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+    Упрощаем работу с изображениями и видео
+   */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+    Наследуем свойства шрифт для полей ввода
+   */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+  height: 100%;
+  /**
+      Убираем скачок интерфейса по горизонтали
+      при появлении / исчезновении скроллбара
+     */
+  scrollbar-gutter: stable;
+}
+
+/**
+    Плавный скролл
+   */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+  min-height: 100%;
+  /**
+      Унифицированный интерлиньяж
+     */
+  line-height: 1.5;
+}
+
+/**
+    Нормализация высоты элемента ссылки при его инспектировании в DevTools
+   */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+    Курсор-рука при наведении на элемент
+   */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+    Приводим к единому цвету svg-элементы
+    (за исключением тех, у которых уже указан
+    атрибут fill со значением 'none' или начинается с 'url')
+   */
+:where([fill]:not([fill=none], [fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+    Приводим к единому цвету svg-элементы
+    (за исключением тех, у которых уже указан
+    атрибут stroke со значением 'none')
+   */
+:where([stroke]:not([stroke=none], [stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+    Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+   */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+    Приведение рамок таблиц в классический 'collapse' вид
+   */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+    Удаляем все анимации и переходы для людей,
+    которые предпочитают их не использовать
+   */
+@font-face {
+  font-family: "Jost";
+  src: url(../fonts/Jost-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Jost";
+  src: url(../fonts/Jost-SemiBold.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-dark: #141024;
+  --color-darl-opacity: rgba(20, 16, 36, 0.7);
+  --color-light: #ffffff;
+  --color-red: #d52027;
+  --color-gray: #282944;
+  --border: 1px solid rgba(20, 16, 36, 0.2);
+  --border-icon: 1px solid white;
+  --border-radius: 10px;
+  --border-radius-small: 5px;
+  --border-radius-large: 20px;
+  --border-radius-bold: 40px;
+  --font-family: "Jost", sans-serif;
+  --container-width: 1160px;
+  --container-padding-x: 10px;
+  --section-padding-y: 120px;
+  --input-height: 64px;
+  --button-height: 79px;
+  --transition-duration: 0.2s;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+}
+.container--first-and-second {
+  max-width: calc(var(--container-width-first-and-second) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(16px, 0.9375vw, 18px);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-dark-opacity);
+  background-color: var(--color-light);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+h1,
+.h1 {
+  font-size: clamp(30px, 3.6458333333vw, 70px);
+}
+
+h2,
+.h2 {
+  font-size: clamp(30px, 2.6041666667vw, 50px);
+}
+
+h3,
+.h3 {
+  font-size: clamp(20px, 1.25vw, 24px);
+}
+
+h4,
+.h4 {
+  font-size: clamp(18px, 1.0416666667vw, 20px);
+}
+
+.burger-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 44px;
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: var(--border-radius);
+  border: 1px solid white;
+  background-color: rgba(36, 30, 16, 0.08);
+}
+.burger-button::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 60%;
+  height: 2px;
+  background-color: var(--color-light);
+  border-radius: 5px;
+  box-shadow: 0 -8px white, 0 8px white;
+}
+
+.header {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  align-items: center;
+  padding-block: 30px;
+  padding-inline: 100px;
+}
+@media (max-width: 1280px) {
+  .header__inner {
+    padding-block: 10px;
+    padding-inline: 50px;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .header__inner {
+    padding-inline: 10px;
+  }
+}
+.header__menu-list {
+  display: flex;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+  align-items: center;
+}
+@media (max-width: 1280px) {
+  .header__menu-list {
+    -moz-column-gap: 20px;
+         column-gap: 20px;
+  }
+}
+.header__menu-link {
+  font-size: clamp(18px, 1.0416666667vw, 20px);
+}
+@media (hover: hover) {
+  .header__menu-link:hover {
+    opacity: 0.7;
+  }
+}
+@media (hover: none) {
+  .header__menu-link:active {
+    opacity: 0.7;
+  }
+}
+.header__link {
+  font-size: clamp(16px, 1.5625vw, 30px);
+}
+@media (hover: hover) {
+  .header__link:hover {
+    opacity: 0.7;
+  }
+}
+@media (hover: none) {
+  .header__link:active {
+    opacity: 0.7;
+  }
+}
+.header__link-icon {
+  width: 44px;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius);
+  border: 1px solid white;
+  background-color: rgba(20, 16, 36, 0.08);
+}
+@media (max-width: 1023px) {
+  .header__link-icon {
+    margin-left: auto;
+  }
+}
+.header__link-image {
+  margin-inline: auto;
+}
+@media (max-width: 1023px) {
+  .header__link__logo {
+    max-width: 136px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .logo__image {
+    max-width: 136px;
+  }
+}
+
+.mobile-overlay {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 14px 20px;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+.mobile-overlay:modal {
+  max-width: 100%;
+  max-height: 100%;
+}
+.mobile-overlay__close-button-wrapper {
+  display: flex;
+  justify-content: end;
+}
+.mobile-overlay__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+  min-height: 80vh;
+}
+.mobile-overlay__link {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.cross-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 44px;
+  aspect-ratio: 1;
+  position: relative;
+  top: -4px;
+  left: 10px;
+  border-radius: var(--border-radius-small);
+  border: 1px solid white;
+  border-radius: var(--border-radius);
+}
+@media (hover: hover) {
+  .cross-button:hover {
+    background-color: var(--color-accent);
+  }
+}
+@media (hover: none) {
+  .cross-button:active {
+    background-color: var(--color-accent);
+  }
+}
+.cross-button::before, .cross-button::after {
+  content: "";
+  position: absolute;
+  top: 47%;
+  left: 13px;
+  width: 38%;
+  height: 2px;
+  background-color: var(--color-light);
+  border-radius: 5px;
+}
+.cross-button::before {
+  rotate: 45deg;
+}
+.cross-button::after {
+  rotate: -45deg;
+}
+
+.hero {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+.hero__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  margin-inline: auto;
+  padding-top: 84px;
+  max-width: 1329px;
+  padding-inline: 50px;
+}
+@media (max-width: 767px) {
+  .hero__wrapper {
+    padding-top: 47px;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    max-width: 300px;
+    padding-inline: 0;
+  }
+}
+@media (max-width: 767px) {
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: contents;
+  }
+}
+.hero__title {
+  margin-bottom: 20px;
+  max-width: 516px;
+}
+.hero__description {
+  margin-bottom: 50px;
+  max-width: 478px;
+  font-size: clamp(16px, 1.0416666667vw, 20px);
+}
+@media (max-width: 767px) {
+  .hero__description {
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
+}
+.hero__button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  background-color: var(--color-red);
+  color: var(--color-light);
+  padding: 25px 54px;
+  border-radius: var(--border-radius-small);
+}
+@media (hover: hover) {
+  .hero__button:hover {
+    opacity: 0.7;
+  }
+}
+@media (hover: none) {
+  .hero__button:active {
+    opacity: 0.7;
+  }
+}
+@media (max-width: 767px) {
+  .hero__button {
+    padding: 17px 82px;
+    order: 2;
+    position: relative;
+    top: -67px;
+  }
+}
+@media (max-width: 767px) and (hover: hover) {
+  .hero__button:hover {
+    opacity: 1;
+    background-color: var(--color-dark);
+  }
+}
+@media (max-width: 767px) and (hover: none) {
+  .hero__button:active {
+    opacity: 1;
+    background-color: var(--color-dark);
+  }
+}
+@media (max-width: 1280px) {
+  .hero__image {
+    max-width: 50%;
+    height: auto;
+  }
+}
+@media (max-width: 767px) {
+  .hero__image {
+    max-width: 273px;
+    height: auto;
+    order: 1;
+  }
+}/*# sourceMappingURL=styles.css.map */
