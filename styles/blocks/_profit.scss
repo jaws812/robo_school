@@ -1,0 +1,56 @@
+.profit {
+  background-color: var(--color-gray);
+  padding-block: 100px;
+  padding-inline: var(--container-padding-x);
+
+  @include tablet {
+    padding-block: 50px;
+  }
+
+  @include mobile{
+    padding-top: 40px;
+    padding-bottom: 50px;
+  }
+
+  &__title {
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  &__inner {
+    max-width: 1160px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+
+    @include tablet {
+      row-gap: 40px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 40px;
+
+    @include tablet {
+      column-gap: 20px;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      row-gap: 30px;
+    }
+  }
+
+  &__item {
+    max-width: 360px;
+    &-title {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.field {
+  width: 100%;
+  @include tablet-above {
+    max-width: 500px;
+  }
+  &-input {
+    width: 100%;
+    border: none;
+    border-radius: var(--border-radius-small);
+    padding-inline: 20px;
+    height: var(--input-height);
+  }
+}

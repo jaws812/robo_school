@@ -1,0 +1,158 @@
+.pocket {
+  &__inner {
+    max-width: 1160px;
+    padding-inline: 10px;
+    margin-inline: auto;
+    padding-block: 120px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+
+    @include tablet {
+      padding-block: 60px;
+    }
+
+    @include mobile {
+      row-gap: 40px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 40px;
+    min-height: 500px;
+
+    @include desktop {
+      column-gap: 15px;
+    }
+
+    @include tablet {
+      justify-content: space-around;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+
+  &__item {
+    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 40px;
+    align-items: center;
+    border: var(--border);
+    border-radius: var(--border-radius-large);
+
+    &:not(:first-child) {
+      max-height: 460px;
+    }
+
+    &:not(:first-child) &-title {
+      margin-bottom: 43px;
+      @include mobile {
+        margin-bottom: 40px;
+      }
+    }
+    &:not(:first-child) &-description {
+      margin-bottom: 41px;
+
+      @include mobile{
+        margin-bottom: 20px;
+      }
+    }
+
+    &-title {
+      font-size: 30px;
+      font-weight: 600;
+      
+    }
+
+    &-price {
+      font-size: 50px;
+      font-weight: 600;
+
+      @include tablet {
+        font-size: 30px;
+      }
+
+      @include mobile{
+        font-size: 50px;
+      }
+
+      
+    }
+
+    &-description {
+      text-align: center;
+    }
+
+    &-button {
+      @include reset-button;
+      background-color: var(--color-red);
+      padding: 25px 76px;
+      border-radius: var(--border-radius);
+      color: var(--color-light);
+      max-width: 280px;
+      
+
+      @include tablet {
+        padding: 17px 48px;
+      }
+
+      @include mobile{
+        min-height: 60px;
+        min-width: 260px;
+      }
+    }
+
+    &--pro {
+      border: none;
+      background-color: var(--color-dark);
+      color: var(--color-light);
+      &-title {
+        margin-bottom: 63px;
+        
+      }
+      &-description {
+        margin-bottom: 32px;
+        max-width: 250px;
+
+        @include mobile{
+          margin-bottom: 20px;
+        }
+      }
+      &-price {
+        @include tablet {
+          font-size: 30px;
+        }
+        @include mobile{
+          font-size: 50px;
+        }
+      }
+    }
+
+    @include desktop {
+      padding: 40px 20px;
+      min-width: 300px;
+    }
+    @include tablet {
+      min-width: 230px;
+      padding-inline: 10px;
+    }
+    @include mobile {
+      min-width: 300px;
+      padding: 40px 20px;
+    }
+  }
+
+  &__title {
+    @include mobile {
+      text-align: center;
+    }
+  }
+}

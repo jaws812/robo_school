@@ -1,0 +1,61 @@
+.numbers {
+  &__inner {
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-block: 120px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    padding-inline: var(--container-padding-x);
+
+    @include tablet {
+      padding-block: 60px;
+      row-gap: 40px;
+    }
+
+    
+  }
+
+  &__description {
+    @include fluid-text(30, 20);
+    max-width: 891px;
+  }
+
+  &__bold {
+    font-weight: bold;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 40px;
+
+    @include tablet {
+        column-gap: 20px;
+    }
+
+    @include mobile{
+        flex-direction: column;
+        align-items:center;
+        text-align: center;
+        row-gap: 30px;
+    }
+  }
+
+  &__item {
+
+    @include mobile{
+        max-width: 270px;
+    }
+    &-number {
+      @include fluid-text(70, 60);
+      font-weight: 600;
+      color: var(--color-red);
+    }
+
+    &-description {
+      opacity: 0.7;
+    }
+  }
+}
