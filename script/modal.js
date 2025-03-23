@@ -1,13 +1,3 @@
-//open modal window
-// const slideElements = document.querySelectorAll("[data-js-slide]");
-// const modalElement = document.querySelector("[data-js-modal]");
-
-// slideElements.forEach((slideElement) => {
-//   slideElement.addEventListener("click", () => {
-//     modalElement.classList.remove("visually-hidden");
-//   });
-// });
-
 export class Modal {
   selectors = {
     slide: "[data-js-slide]",
@@ -36,10 +26,6 @@ export class Modal {
     this.selectElement = this.modalElement.querySelector("#achievements");
     this.bindEvents();
   }
-
-  // getSelectors() {
-  //   return this.selectors;
-  // }
 
   onClickSlide = () => {
     this.modalElement.classList.remove(this.stateClasses.hidden);
