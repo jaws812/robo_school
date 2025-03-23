@@ -1,0 +1,208 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  @include mobile {
+    background-color: rgb(255, 255, 255);
+  }
+
+  &__select {
+    background-color: var(--color-red);
+    color: var(--color-light);
+    padding: 10px 75px;
+  }
+
+  &__container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 940px;
+    max-height: 768px;
+    border-radius: 20px;
+    background-color: white;
+
+    @include desktop {
+      width: 90%;
+    }
+
+    @include mobile {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: none;
+      padding: 40px 10px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__header {
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+
+    @include mobile {
+      column-gap: 10px;
+      padding-bottom: 20px;
+    }
+
+    &-image {
+      max-width: 25%;
+
+      @include mobile {
+        height: 100%;
+      }
+    }
+
+    &-title {
+      line-height: 160%;
+      padding-bottom: 10px;
+      @include fluid-text(24, 16);
+
+      @include mobile {
+        padding-bottom: 5px;
+      }
+    }
+
+    &-socials {
+      max-height: 30px;
+    }
+
+    &-description {
+      padding-bottom: 10px;
+      @include fluid-text(18, 12);
+    }
+
+    &-button-close {
+      margin-left: auto;
+      align-self: flex-start;
+      border: none;
+      background-color: transparent;
+      @include fluid-text(18, 14);
+    }
+
+    &-button-cross {
+      margin-left: auto;
+      align-self: flex-start;
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 20px;
+      top: 50px;
+      @include square(30px);
+    }
+  }
+
+  &__list {
+    display: flex;
+    column-gap: 180px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1410241c;
+    @include fluid-text(20, 16);
+    .active-red {
+      color: var(--color-red);
+    }
+
+    .opactiy {
+      opacity: 20%;
+      pointer-events: none;
+    }
+  }
+
+  &__body {
+    padding: 40px;
+    // background-color: rgb(94, 99, 132);
+    border-radius: 20px;
+    overflow-y: auto;
+
+    @include mobile {
+      border: 1px solid #090909;
+      box-shadow: 0px 7px 8px 0px #0000000d;
+      border-radius: 10px;
+      height: 100%;
+      padding: 0;
+      border-top: 40px solid white;
+      border-right: 10px solid white;
+      border-bottom: 40px solid white;
+      border-left: 10px solid white;
+    }
+  }
+
+  &__description {
+    margin-top: 20px;
+    max-height: 374px;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 21px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+      );
+      pointer-events: none;
+    }
+
+    @include desktop {
+      max-height: 200px;
+      &::before {
+        bottom: 39px;
+      }
+    }
+
+    @include mobile {
+      max-height: calc(100% - 122px - 40px);
+      &::before {
+        bottom: 79px;
+      }
+    }
+
+    .info {
+      &__description {
+        @include fluid-text(20, 14);
+      }
+    }
+    .experience {
+      &__title {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        @include fluid-text(24, 16);
+
+        @include mobile {
+          padding-top: 20px;
+          padding-bottom: 10px;
+        }
+      }
+      &__description {
+        @include fluid-text(20, 14);
+      }
+    }
+    .rewards {
+      &__title {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        @include fluid-text(24, 16);
+
+        @include mobile {
+          padding-top: 20px;
+          padding-bottom: 10px;
+        }
+      }
+      &__description {
+        @include fluid-text(20, 14);
+      }
+    }
+  }
+}
